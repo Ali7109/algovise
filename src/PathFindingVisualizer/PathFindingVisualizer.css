@@ -1,0 +1,14 @@
+.grid-container {
+    width: fit-content;
+    height: fit-content;
+    border: 2px solid;
+    margin: auto;
+}
+
+.grid-col {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    height: fit-content;
+    width: fit-content;
+}
