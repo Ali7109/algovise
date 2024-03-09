@@ -5,4 +5,19 @@
     border: 1px solid black;
     height: 30px;
     width: 30px;
+    display: flex;
+}
+
+.node-active{
+    background-color: #FFD700;
+}
+
+.node-block {
+    background-color: #000000;
+}
+
+.edge-point {
+    font-size: 25px;
+    padding: 0px;
+    margin: auto;
 }
