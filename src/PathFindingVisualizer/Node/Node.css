@@ -16,6 +16,10 @@
     background-color: #000000;
 }
 
+.node-path {
+    background-color: blue;
+}
+
 .edge-point {
     font-size: 25px;
     padding: 0px;
