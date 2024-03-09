@@ -11,6 +11,7 @@ const PathFindingVisualizer = () => {
   const [start, setStart] = useState([10, 5])
   const [end, setEnd] = useState([10, 25])
   const [isMouseDown, setIsMouseDown] = useState(false)
+  const [running, setRunning] = useState(false)
 
   const alogirthms = [
     {
@@ -31,17 +32,15 @@ const PathFindingVisualizer = () => {
     },
     {
       name: 'Clear',
-      run: () => setGrid(getInitialGrid())
+      run: () => clearGrid()
     }
   ]
 
   const runAlgorithm = async (algorithm) => {
+      clearGrid()
+      setRunning(true)
       const visitedNodesInOrder = await algorithm(start, end, grid, setGrid); // Run the algorithm
-      console.log(visitedNodesInOrder)
-      visitedNodesInOrder.map((node) => {
-        console.log(node)
-        return true
-      })
+      setRunning(false)
       // animateTraversal(visitedNodesInOrder); // Animate the traversal using visitedNodesInOrder
   };
 
@@ -86,7 +85,21 @@ const PathFindingVisualizer = () => {
     }
     return grid
   }
-
+  const clearGrid = () => {
+    const newGrid = grid.slice()
+    for (let row = 0; row < 20; row++) {
+      for (let col = 0; col < 30; col++) {
+        const node = newGrid[row][col]
+        newGrid[row][col] = {
+          ...node,
+          isActive: false,
+          aBlock: false,
+          path: false
+        }
+      }
+    }
+    setGrid(newGrid)
+  }
   useEffect(() => {
     setGrid(getInitialGrid())
   }, [])
@@ -95,7 +108,7 @@ const PathFindingVisualizer = () => {
     <div className='container'>
       <div className="header">
         {alogirthms.map((algo, idx) => (
-          <button key={idx} onClick={algo.run}>{algo.name}</button>
+          <button key={idx} disabled={running} onClick={algo.run}>{algo.name}</button>
         ))}
       </div>
       <div className="grid-container" >

@@ -4,7 +4,7 @@ import './Node.css'
 const Node = ({ isActive, aBlock, path, isStart, isEnd }) => {
   return (
     <div
-      className={`node ${path ? 'node-path' : aBlock ? 'node-block' : isActive ? 'node-active' : ''}`}
+      className={`node ${isStart ? 'node-start' : isEnd && 'node-end'} ${path ? 'node-path' : aBlock ? 'node-block' : isActive ? 'node-active' : ''}`}
     >
       {isStart ? (
         <h1 className="edge-point">&#x2609;</h1>

@@ -8,6 +8,14 @@
     display: flex;
 }
 
+.node-start {
+    background-color: #00FF00 !important;
+}
+
+.node-end {
+    background-color: #FF0000 !important;
+}
+
 .node-active{
     background-color: #FFD700;
 }
