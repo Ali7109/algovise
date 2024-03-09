@@ -2,6 +2,17 @@ let DONE = false;
 
 export const runBfs = async (start, end, grid, setGrid) => {
 	const visitedNodesInOrder = [];
+	const shortestPath = [];
+
+	// populate prev with null
+	for (let i = 0; i < 20; i++) {
+		const temp = [];
+		for (let j = 0; j < 30; j++) {
+			temp.push(null);
+		}
+		shortestPath.push(temp);
+	}
+
 	const queue = [];
 	const visited = new Set();
 	const delay = 1; // Delay in milliseconds
@@ -17,7 +28,7 @@ export const runBfs = async (start, end, grid, setGrid) => {
 		if (currentNode[0] === end[0] && currentNode[1] === end[1]) {
 			// Reached the end node
 			DONE = true;
-			return visitedNodesInOrder;
+			return shortestPath;
 		}
 
 		// Get the neighbors of the current node
@@ -29,6 +40,8 @@ export const runBfs = async (start, end, grid, setGrid) => {
 			const neighborRow = neighbor[0];
 			const neighborCol = neighbor[1];
 			const newNodeGrid = [...grid];
+
+			shortestPath[neighborRow][neighborCol] = currentNode;
 
 			// Update the grid to mark the node as visited
 			for (let row = 0; row < 20; row++) {
